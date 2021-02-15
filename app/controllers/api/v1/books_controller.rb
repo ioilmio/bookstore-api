@@ -5,11 +5,15 @@ class Api::V1::BooksController < ApplicationController
   # GET /books.json
   def index
     @books = Book.all
+    render json: @books, status: :ok
   end
 
   # GET /books/1
   # GET /books/1.json
-  def show; end
+  def show
+    set_book
+    render json: @book, status: :ok
+  end
 
   # POST /books
   # POST /books.json
@@ -36,7 +40,13 @@ class Api::V1::BooksController < ApplicationController
   # DELETE /books/1
   # DELETE /books/1.json
   def destroy
-    @book.destroy
+    set_book
+    if @book.destroy
+      render json: @book, status: :ok
+      head :ok
+    else
+      head :unprocessable_entity
+    end
   end
 
   private
@@ -48,6 +58,6 @@ class Api::V1::BooksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def book_params
-    params.require(:book).permit(:title, :author, :category, :comment, :isbn)
+    params.require(:book).permit(:title, :author, :category, :isbn)
   end
 end
