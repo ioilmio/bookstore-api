@@ -1,6 +1,6 @@
 class Book < ApplicationRecord
-  # validates :title, presence: true
-  # validates :category, presence: true
-  # validates :author
   belongs_to :user
+  # validates :title, presence: true
+  # validates :author
+  # validates :category, presence: true
 end

@@ -18,14 +18,20 @@ gem 'jbuilder', '~> 2.7'
 gem 'jwt'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-gem 'devise'
+gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
-
+gem 'omniauth', '~> 2.0', '>= 2.0.2'
+gem 'omniauth-github'
+gem 'omniauth-google-oauth2', '~> 0.8.0'
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
 group :development, :test do
+  gem 'database_cleaner-active_record'
+  gem 'factory_bot_rails'
+  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
   gem 'hirb'
   gem 'rspec-rails'
   gem 'rubocop', '~>1.9', require: false

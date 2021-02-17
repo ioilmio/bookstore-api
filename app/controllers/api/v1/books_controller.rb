@@ -1,5 +1,6 @@
 class Api::V1::BooksController < ApplicationController
   before_action :set_book, only: %i[show update destroy]
+  # authenticate_user %i[create destroy update]
 
   # GET /books
   # GET /books.json

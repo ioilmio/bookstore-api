@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'omniauth-github'
+require 'omniauth-google-oauth2'
+
 # Assuming you have not yet modified this file, each configuration option below
 # is set to its default value. Note that some are commented out while others
 # are not: uncommented lines are intended to protect your configuration from
@@ -15,7 +18,10 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = '521c6d9c1e4fb8a88a9b7552198a281bd8151e289e70ce67a9ce7da8b96dfbb1c7bd2902cdcaeca810309ba3d26ff0efd4e4b6958308bf1814047cfc5a0d56c1'
-
+  config.omniauth :github, Rails.application.credentials.github[:GH_CLIENT_ID],
+                  Rails.application.credentials.github[:GH_CLIENT_SECRET]
+  config.omniauth :google_oauth2, Rails.application.credentials.google[:GOOGLE_CLIENT_ID],
+                  Rails.application.credentials.google[:GOOGLE_CLIENT_SECRET]
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
